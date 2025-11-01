@@ -8,6 +8,8 @@ import authRoutes from './routes/authRoutes';
 // Load env vars
 dotenv.config();
 
+// Force redeploy - CORS fix for Vercel
+
 // Connect to database
 connectDB();
 
