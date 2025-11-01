@@ -20,7 +20,7 @@ app.use(cookieParser());
 
 // Enable CORS
 const allowedOrigins = process.env.NODE_ENV === 'production' 
-    ? ['https://arakkiss.onrender.com', 'https://arakkis.vercel.app', 'http://localhost:5173', 'http://localhost:3000'] 
+    ? ['https://arakkiss.onrender.com', 'https://arakkis.vercel.app', 'https://agrobazar-gilt.vercel.app', 'http://localhost:5173', 'http://localhost:3000'] 
     : ['http://localhost:5173', 'http://localhost:3000', 'http://127.0.0.1:5173'];
 
 app.use(cors({
