@@ -15,7 +15,7 @@ interface ShopFormData {
   district: string;
 }
 
-export default function AmarDokan({ onShopCreated }: { onShopCreated: () => void }) {
+export default function AmarDokan() {
   const { user, token } = useAuth();
   const [step, setStep] = useState(1);
   const [hasShop, setHasShop] = useState(false);
@@ -44,6 +44,7 @@ export default function AmarDokan({ onShopCreated }: { onShopCreated: () => void
       // Check if farmer already has a shop
       checkExistingShop();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   const checkExistingShop = async () => {

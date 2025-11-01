@@ -58,7 +58,7 @@ function App() {
           ) : currentView === 'info' ? (
             <Info />
           ) : currentView === 'myshop' ? (
-            <AmarDokan onShopCreated={() => setCurrentView('home')} />
+            <AmarDokan />
           ) : (
             <Contact />
           )}
