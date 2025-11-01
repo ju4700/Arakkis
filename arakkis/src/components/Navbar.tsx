@@ -7,7 +7,7 @@ function Navbar({ onNavigate }: NavbarProps) {
         <nav className="w-full max-w-[1200px] mx-auto h-16 px-5 bg-white rounded-[40px] shadow-sm flex justify-between items-center mt-2">
             {/* Logo Section */}
             <div className="flex items-center gap-2 cursor-pointer" onClick={() => onNavigate('home')}>
-                <img className="w-7 h-7 rounded-full object-cover" src="fav.png" alt="AgroBazar Logo" />
+                <img className="w-7 h-7 rounded-full object-cover" src="agriculture.png" alt="AgroBazar Logo" />
                 <div className="text-green-600 text-xl font-bold font-inter">AgroBazar</div>
             </div>
 

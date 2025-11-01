@@ -9,7 +9,7 @@ function Footer() {
                     {/* Company Info */}
                     <div>
                         <div className="flex items-center gap-2 mb-4">
-                            <img className="w-8 h-8 rounded-full" src="fav.png" alt="AgroBazar Logo" />
+                            <img className="w-8 h-8 rounded-full" src="agriculture.png" alt="AgroBazar Logo" />
                             <h3 className="text-2xl font-bold text-green-500 font-inter">AgroBazar</h3>
                         </div>
                         <p className="text-gray-400 text-sm font-hind-siliguri mb-4">
