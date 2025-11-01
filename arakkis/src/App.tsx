@@ -42,25 +42,27 @@ function App() {
 
   return (
     <AuthProvider>
-      <div className="min-h-screen bg-[#eff2f3]">
+      <div className="min-h-screen bg-[#eff2f3] flex flex-col">
         <div className="py-6">
           <Navbar onNavigate={handleNavigate} />
         </div>
         
-        {currentView === 'home' ? (
-          <>
-            <Hero onQuickLinkClick={handleQuickLinkClick} />
-            <Bazar showAll={false} onShowMore={handleShowMore} />
-          </>
-        ) : currentView === 'market' ? (
-          <Bazar showAll={true} onShowMore={handleShowMore} />
-        ) : currentView === 'info' ? (
-          <Info />
-        ) : currentView === 'myshop' ? (
-          <AmarDokan onShopCreated={() => setCurrentView('home')} />
-        ) : (
-          <Contact />
-        )}
+        <div className="flex-grow">
+          {currentView === 'home' ? (
+            <>
+              <Hero onQuickLinkClick={handleQuickLinkClick} />
+              <Bazar showAll={false} onShowMore={handleShowMore} />
+            </>
+          ) : currentView === 'market' ? (
+            <Bazar showAll={true} onShowMore={handleShowMore} />
+          ) : currentView === 'info' ? (
+            <Info />
+          ) : currentView === 'myshop' ? (
+            <AmarDokan onShopCreated={() => setCurrentView('home')} />
+          ) : (
+            <Contact />
+          )}
+        </div>
         
         <Footer />
       </div>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+import ShopDashboard from './ShopDashboard';
 
 const API_URL = 'https://arakkiss.onrender.com/api';
 
@@ -17,6 +18,8 @@ interface ShopFormData {
 export default function AmarDokan({ onShopCreated }: { onShopCreated: () => void }) {
   const { user, token } = useAuth();
   const [step, setStep] = useState(1);
+  const [hasShop, setHasShop] = useState(false);
+  const [checkingShop, setCheckingShop] = useState(true);
   const [formData, setFormData] = useState<ShopFormData>({
     name: '',
     description: '',
@@ -33,10 +36,32 @@ export default function AmarDokan({ onShopCreated }: { onShopCreated: () => void
   useEffect(() => {
     if (!user) {
       setError('দয়া করে লগইন করুন');
+      setCheckingShop(false);
     } else if (user.userType !== 'farmer') {
       setError('শুধুমাত্র কৃষক দোকান তৈরি করতে পারবেন');
+      setCheckingShop(false);
+    } else {
+      // Check if farmer already has a shop
+      checkExistingShop();
     }
   }, [user]);
+
+  const checkExistingShop = async () => {
+    try {
+      const response = await fetch(`${API_URL}/shops/my/shop`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      const data = await response.json();
+      
+      if (response.ok && data.shop) {
+        setHasShop(true);
+      }
+    } catch (err) {
+      // No shop exists, that's fine
+    } finally {
+      setCheckingShop(false);
+    }
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -101,7 +126,9 @@ export default function AmarDokan({ onShopCreated }: { onShopCreated: () => void
       });
 
       setStep(3);
-      setTimeout(() => onShopCreated(), 2000);
+      setTimeout(() => {
+        setHasShop(true); // Show dashboard after shop creation
+      }, 2000);
     } catch (err: any) {
       setError(err.message);
     } finally {
@@ -110,6 +137,17 @@ export default function AmarDokan({ onShopCreated }: { onShopCreated: () => void
   };
 
   // Check authorization first
+  if (checkingShop) {
+    return (
+      <div className="w-full max-w-[1200px] mx-auto py-8 px-5">
+        <div className="bg-white rounded-2xl shadow-sm p-8 text-center">
+          <div className="animate-spin w-12 h-12 border-4 border-green-600 border-t-transparent rounded-full mx-auto"></div>
+          <p className="mt-4 text-gray-600 font-hind-siliguri">লোড হচ্ছে...</p>
+        </div>
+      </div>
+    );
+  }
+
   if (!user) {
     return (
       <div className="w-full max-w-[1200px] mx-auto py-8 px-5">
@@ -132,6 +170,11 @@ export default function AmarDokan({ onShopCreated }: { onShopCreated: () => void
         </div>
       </div>
     );
+  }
+
+  // If farmer already has a shop, show dashboard
+  if (hasShop) {
+    return <ShopDashboard />;
   }
 
   if (step === 3) {
