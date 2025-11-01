@@ -1,5 +1,5 @@
 interface NavbarProps {
-    onNavigate: (view: 'home' | 'market') => void;
+    onNavigate: (view: 'home' | 'market' | 'info') => void;
 }
 
 function Navbar({ onNavigate }: NavbarProps) {
@@ -19,9 +19,9 @@ function Navbar({ onNavigate }: NavbarProps) {
                 <button onClick={() => onNavigate('market')} className="text-black text-lg font-medium font-hind-siliguri hover:text-green-600 transition-colors cursor-pointer">
                     বাজার
                 </button>
-                <a href="#info" className="text-black text-lg font-medium font-hind-siliguri hover:text-green-600 transition-colors cursor-pointer">
+                <button onClick={() => onNavigate('info')} className="text-black text-lg font-medium font-hind-siliguri hover:text-green-600 transition-colors cursor-pointer">
                     তথ্য
-                </a>
+                </button>
                 <a href="#contact" className="text-black text-lg font-medium font-hind-siliguri hover:text-green-600 transition-colors cursor-pointer">
                     যোগাযোগ
                 </a>
