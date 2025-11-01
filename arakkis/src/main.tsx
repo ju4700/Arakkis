@@ -4,6 +4,7 @@ import './index.css'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Bazar from './components/Bazar'
+import Footer from './components/Footer'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -13,6 +14,7 @@ createRoot(document.getElementById('root')!).render(
       </div>
       <Hero />
       <Bazar />
+      <Footer />
     </div>
   </StrictMode>,
 )
