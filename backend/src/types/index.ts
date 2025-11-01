@@ -48,7 +48,7 @@ export interface AuthRequest extends Request {
 
 export interface IRegisterBody {
     name: string;
-    email: string;
+    email?: string;
     phone: string;
     password: string;
     userType: 'farmer' | 'consumer';

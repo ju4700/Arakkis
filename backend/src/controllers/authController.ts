@@ -10,27 +10,41 @@ export const register = async (req: Request<{}, {}, IRegisterBody>, res: Respons
     try {
         const { name, email, phone, password, userType, farmDetails, shippingAddress } = req.body;
 
-        // Check if user exists
-        const userExists = await User.findOne({ 
-            $or: [{ email }, { phone }] 
-        });
+        // Check if user exists by phone (email is optional)
+        const userExists = await User.findOne({ phone });
 
         if (userExists) {
             res.status(400).json({
                 success: false,
-                message: 'এই ইমেইল বা ফোন নম্বর দিয়ে ইতিমধ্যে একটি অ্যাকাউন্ট আছে'
+                message: 'এই ফোন নম্বর দিয়ে ইতিমধ্যে একটি অ্যাকাউন্ট আছে'
             });
             return;
+        }
+
+        // If email is provided, check if it's already used
+        if (email) {
+            const emailExists = await User.findOne({ email });
+            if (emailExists) {
+                res.status(400).json({
+                    success: false,
+                    message: 'এই ইমেইল দিয়ে ইতিমধ্যে একটি অ্যাকাউন্ট আছে'
+                });
+                return;
+            }
         }
 
         // Create user object
         const userData: any = {
             name,
-            email,
             phone,
             password,
             userType
         };
+
+        // Add email if provided
+        if (email) {
+            userData.email = email;
+        }
 
         // Add type-specific data
         if (userType === 'farmer' && farmDetails) {
