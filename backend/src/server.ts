@@ -20,23 +20,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// Enable CORS
-const allowedOrigins = process.env.NODE_ENV === 'production' 
-    ? ['https://arakkiss.onrender.com', 'https://arakkis.vercel.app', 'https://agrobazar-gilt.vercel.app', 'http://localhost:5173', 'http://localhost:3000'] 
-    : ['http://localhost:5173', 'http://localhost:3000', 'http://127.0.0.1:5173'];
-
+// Enable CORS - Allow all origins for testing
 app.use(cors({
-    origin: function(origin, callback) {
-        // Allow requests with no origin (like mobile apps, Postman, etc.)
-        if (!origin) return callback(null, true);
-        
-        if (allowedOrigins.indexOf(origin) === -1) {
-            console.log('CORS blocked origin:', origin);
-            const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-            return callback(new Error(msg), false);
-        }
-        return callback(null, true);
-    },
+    origin: true,
     credentials: true
 }));
 
