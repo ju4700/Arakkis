@@ -12,7 +12,8 @@ function AuthModal({ isOpen, onClose }: AuthModalProps) {
         name: '',
         phone: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
+        userType: 'consumer' as 'farmer' | 'consumer'
     });
     const [formError, setFormError] = useState('');
 
@@ -70,7 +71,8 @@ function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 await register(
                     formData.name,
                     formData.phone,
-                    formData.password
+                    formData.password,
+                    formData.userType
                 );
             }
             // Close modal on success
@@ -80,7 +82,8 @@ function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 name: '',
                 phone: '',
                 password: '',
-                confirmPassword: ''
+                confirmPassword: '',
+                userType: 'consumer'
             });
         } catch (err) {
             // Error is already set in context
@@ -95,7 +98,8 @@ function AuthModal({ isOpen, onClose }: AuthModalProps) {
             name: '',
             phone: '',
             password: '',
-            confirmPassword: ''
+            confirmPassword: '',
+            userType: 'consumer'
         });
     };
 
@@ -129,19 +133,36 @@ function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
                     {/* Registration Fields */}
                     {!isLogin && (
-                        <div>
-                            <label className="block text-sm font-semibold text-gray-700 font-hind-siliguri mb-2">
-                                পূর্ণ নাম *
-                            </label>
-                            <input
-                                type="text"
-                                name="name"
-                                value={formData.name}
-                                onChange={handleChange}
-                                placeholder="আপনার নাম লিখুন"
-                                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent font-hind-siliguri transition-all"
-                            />
-                        </div>
+                        <>
+                            <div>
+                                <label className="block text-sm font-semibold text-gray-700 font-hind-siliguri mb-2">
+                                    পূর্ণ নাম *
+                                </label>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    placeholder="আপনার নাম লিখুন"
+                                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent font-hind-siliguri transition-all"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-semibold text-gray-700 font-hind-siliguri mb-2">
+                                    আপনি কে? *
+                                </label>
+                                <select
+                                    name="userType"
+                                    value={formData.userType}
+                                    onChange={handleChange}
+                                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent font-hind-siliguri transition-all"
+                                >
+                                    <option value="consumer">🛒 ক্রেতা (পণ্য কিনতে চাই)</option>
+                                    <option value="farmer">🌾 কৃষক (পণ্য বিক্রি করতে চাই)</option>
+                                </select>
+                            </div>
+                        </>
                     )}
 
                     {/* Phone Number */}

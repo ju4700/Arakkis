@@ -60,24 +60,24 @@ export const register = async (req: Request<{}, {}, IRegisterBody>, res: Respons
 // @access  Public
 export const login = async (req: Request<{}, {}, ILoginBody>, res: Response): Promise<void> => {
     try {
-        const { email, password } = req.body;
+        const { phone, password } = req.body;
 
-        // Validate email & password
-        if (!email || !password) {
+        // Validate phone & password
+        if (!phone || !password) {
             res.status(400).json({
                 success: false,
-                message: 'ইমেইল এবং পাসওয়ার্ড প্রদান করুন'
+                message: 'ফোন নম্বর এবং পাসওয়ার্ড প্রদান করুন'
             });
             return;
         }
 
         // Check for user (include password for comparison)
-        const user = await User.findOne({ email }).select('+password');
+        const user = await User.findOne({ phone }).select('+password');
 
         if (!user) {
             res.status(401).json({
                 success: false,
-                message: 'ভুল ইমেইল বা পাসওয়ার্ড'
+                message: 'ভুল ফোন নম্বর বা পাসওয়ার্ড'
             });
             return;
         }
@@ -88,7 +88,7 @@ export const login = async (req: Request<{}, {}, ILoginBody>, res: Response): Pr
         if (!isMatch) {
             res.status(401).json({
                 success: false,
-                message: 'ভুল ইমেইল বা পাসওয়ার্ড'
+                message: 'ভুল ফোন নম্বর বা পাসওয়ার্ড'
             });
             return;
         }

@@ -13,7 +13,7 @@ interface AuthContextType {
     user: User | null;
     token: string | null;
     login: (phone: string, password: string) => Promise<void>;
-    register: (name: string, phone: string, password: string) => Promise<void>;
+    register: (name: string, phone: string, password: string, userType: 'farmer' | 'consumer') => Promise<void>;
     logout: () => void;
     isLoading: boolean;
     error: string | null;
@@ -87,7 +87,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     const register = async (
         name: string,
         phone: string,
-        password: string
+        password: string,
+        userType: 'farmer' | 'consumer'
     ) => {
         setIsLoading(true);
         setError(null);
@@ -98,7 +99,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ name, phone, password }),
+                body: JSON.stringify({ name, phone, password, userType }),
             });
 
             const data = await response.json();

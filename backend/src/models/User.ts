@@ -10,8 +10,8 @@ const userSchema = new Schema<IUser>({
     },
     email: {
         type: String,
-        required: [true, 'ইমেইল আবশ্যক'],
         unique: true,
+        sparse: true,
         lowercase: true,
         trim: true,
         match: [/^\S+@\S+\.\S+$/, 'একটি বৈধ ইমেইল দিন']
@@ -19,6 +19,7 @@ const userSchema = new Schema<IUser>({
     phone: {
         type: String,
         required: [true, 'ফোন নম্বর আবশ্যক'],
+        unique: true,
         match: [/^(\+880|880)?1[3-9]\d{8}$/, 'একটি বৈধ বাংলাদেশী ফোন নম্বর দিন']
     },
     password: {

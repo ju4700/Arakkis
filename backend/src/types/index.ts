@@ -57,6 +57,6 @@ export interface IRegisterBody {
 }
 
 export interface ILoginBody {
-    email: string;
+    phone: string;
     password: string;
 }

@@ -12,7 +12,8 @@
     "start": "node dist/server.js",
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "watch": "tsc -w",
-    "render-build": "npm install && npm run build"
+    "render-build": "npm install && npm run build",
+    "seed": "ts-node src/seedUsers.ts"
   },
   "keywords": ["agro", "marketplace", "agriculture", "api"],
   "author": "",
