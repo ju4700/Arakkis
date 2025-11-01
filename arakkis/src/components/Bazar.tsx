@@ -7,6 +7,8 @@ interface BazarProps {
 
 function Bazar({ showAll, onShowMore }: BazarProps) {
     const [currentPage, setCurrentPage] = useState(1);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState('সব ক্যাটাগরি');
     const productsPerPage = showAll ? 12 : 9; // 12 for market view (3x4), 9 for home view (3x3)
 
     const allProducts = [
@@ -134,7 +136,7 @@ function Bazar({ showAll, onShowMore }: BazarProps) {
             category: "সবজি",
             price: 60,
             unit: "কেজি",
-            image: "https://placehold.co/300x300/90EE90/FFFFFF?text=কাঁচা+মরিচ",
+            image: "images/chilli.jpeg",
             seller: "হক ভেজিটেবল",
             rating: 4.1,
             reviews: 25,
@@ -186,7 +188,7 @@ function Bazar({ showAll, onShowMore }: BazarProps) {
             category: "সবজি",
             price: 40,
             unit: "কেজি",
-            image: "https://placehold.co/300x300/90EE90/FFFFFF?text=শসা",
+            image: "images/sosha.jpeg",
             seller: "রহমান ভেজিটেবল",
             rating: 4.3,
             reviews: 31,
@@ -264,7 +266,7 @@ function Bazar({ showAll, onShowMore }: BazarProps) {
             category: "সবজি",
             price: 38,
             unit: "কেজি",
-            image: "https://placehold.co/300x300/F5F5DC/FFFFFF?text=ফুলকপি",
+            image: "images/fulkopi.jpeg",
             seller: "কামাল ভেজিটেবল",
             rating: 4.1,
             reviews: 22,
@@ -303,7 +305,7 @@ function Bazar({ showAll, onShowMore }: BazarProps) {
             category: "সবজি",
             price: 30,
             unit: "কেজি",
-            image: "https://placehold.co/300x300/90EE90/FFFFFF?text=বাঁধাকপি",
+            image: "images/badhakopi.jpeg",
             seller: "তাজ ভেজিটেবল",
             rating: 4.0,
             reviews: 19,
@@ -325,8 +327,22 @@ function Bazar({ showAll, onShowMore }: BazarProps) {
         }
     ];
 
+    // Filter and search logic
+    const filteredProducts = allProducts.filter(product => {
+        // Category filter
+        const categoryMatch = selectedCategory === 'সব ক্যাটাগরি' || product.category === selectedCategory;
+        
+        // Search filter
+        const searchMatch = searchQuery === '' || 
+            product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            product.seller.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            product.location.toLowerCase().includes(searchQuery.toLowerCase());
+        
+        return categoryMatch && searchMatch;
+    });
+
     // Pagination logic
-    const totalProducts = showAll ? allProducts.length : 9;
+    const totalProducts = showAll ? filteredProducts.length : 9;
     const totalPages = Math.ceil(totalProducts / productsPerPage);
     
     // Calculate products to display
@@ -334,9 +350,9 @@ function Bazar({ showAll, onShowMore }: BazarProps) {
     if (showAll) {
         const indexOfLastProduct = currentPage * productsPerPage;
         const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-        displayProducts = allProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+        displayProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
     } else {
-        displayProducts = allProducts.slice(0, 9);
+        displayProducts = filteredProducts.slice(0, 9);
     }
 
     const handlePageChange = (pageNumber: number) => {
@@ -346,6 +362,28 @@ function Bazar({ showAll, onShowMore }: BazarProps) {
         if (bazarElement) {
             bazarElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
+    };
+
+    const handleSearch = (query: string) => {
+        setSearchQuery(query);
+        setCurrentPage(1); // Reset to first page when searching
+    };
+
+    const handleCategoryChange = (category: string) => {
+        setSelectedCategory(category);
+        setCurrentPage(1); // Reset to first page when filtering
+    };
+
+    const handleTagClick = (tag: string) => {
+        setSearchQuery(tag);
+        setCurrentPage(1);
+        // Scroll to products
+        setTimeout(() => {
+            const productsGrid = document.querySelector('.grid');
+            if (productsGrid) {
+                productsGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }, 100);
     };
 
     const renderStars = (rating: number) => {
@@ -392,7 +430,11 @@ function Bazar({ showAll, onShowMore }: BazarProps) {
                         
                         {/* Filter/Sort options */}
                         <div className="flex gap-3">
-                            <select className="px-4 py-2 bg-white border border-gray-200 rounded-xl font-hind-siliguri text-sm focus:outline-none focus:ring-2 focus:ring-green-500 cursor-pointer">
+                            <select 
+                                value={selectedCategory}
+                                onChange={(e) => handleCategoryChange(e.target.value)}
+                                className="px-4 py-2 bg-white border border-gray-200 rounded-xl font-hind-siliguri text-sm focus:outline-none focus:ring-2 focus:ring-green-500 cursor-pointer"
+                            >
                                 <option>সব ক্যাটাগরি</option>
                                 <option>সবজি</option>
                                 <option>মাছ</option>
@@ -409,13 +451,28 @@ function Bazar({ showAll, onShowMore }: BazarProps) {
                             <input 
                                 type="text" 
                                 placeholder="সন্ধান করুন"
+                                value={searchQuery}
+                                onChange={(e) => handleSearch(e.target.value)}
                                 className="flex-1 bg-transparent text-gray-900 text-base font-hind-siliguri leading-4 outline-none placeholder:text-gray-400"
                             />
-                            <button className="w-6 h-6 flex items-center justify-center text-gray-600 hover:text-green-600 transition-colors">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                </svg>
-                            </button>
+                            <div className="flex items-center gap-2">
+                                {searchQuery && (
+                                    <button 
+                                        onClick={() => setSearchQuery('')}
+                                        className="w-6 h-6 flex items-center justify-center text-gray-400 hover:text-red-500 transition-colors"
+                                        aria-label="Clear search"
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </button>
+                                )}
+                                <button className="w-6 h-6 flex items-center justify-center text-gray-600 hover:text-green-600 transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
 
                         {/* Popular Search Tags */}
@@ -423,6 +480,7 @@ function Bazar({ showAll, onShowMore }: BazarProps) {
                             {['দেশি আলু', 'তাজা টমেটো', 'কাতলা মাছ', 'ইলিশ মাছ', 'দেশি মুরগি'].map((tag) => (
                                 <button
                                     key={tag}
+                                    onClick={() => handleTagClick(tag)}
                                     className="px-4 py-1.5 bg-white rounded-full shadow-sm border border-gray-200 hover:border-green-500 hover:bg-green-50 transition-all duration-300 cursor-pointer group"
                                 >
                                     <span className="text-black group-hover:text-green-600 text-xs font-hind-siliguri leading-3 transition-colors">
@@ -435,9 +493,10 @@ function Bazar({ showAll, onShowMore }: BazarProps) {
                 </div>
 
             {/* Products Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {displayProducts.map((product, index) => (
-                    <div
+            {displayProducts.length > 0 ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {displayProducts.map((product, index) => (
+                        <div
                         key={product.id}
                         className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 group cursor-pointer transform hover:-translate-y-1"
                         style={{
@@ -527,9 +586,29 @@ function Bazar({ showAll, onShowMore }: BazarProps) {
                     </div>
                 ))}
             </div>
+            ) : (
+                <div className="text-center py-16">
+                    <div className="text-6xl mb-4">🔍</div>
+                    <h3 className="text-2xl font-semibold text-gray-800 font-hind-siliguri mb-2">
+                        কোনো পণ্য পাওয়া যায়নি
+                    </h3>
+                    <p className="text-gray-600 font-hind-siliguri mb-6">
+                        আপনার সার্চ "{searchQuery}" এর জন্য কোনো পণ্য খুঁজে পাওয়া যায়নি
+                    </p>
+                    <button 
+                        onClick={() => {
+                            setSearchQuery('');
+                            setSelectedCategory('সব ক্যাটাগরি');
+                        }}
+                        className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-[32px] font-hind-siliguri text-sm font-medium transition-colors"
+                    >
+                        সব পণ্য দেখুন
+                    </button>
+                </div>
+            )}
 
             {/* Load More Button - Only show if not showing all products */}
-            {!showAll && (
+            {!showAll && displayProducts.length > 0 && (
                 <div className="mt-10 text-center pb-4">
                     <button 
                         onClick={onShowMore}
@@ -540,8 +619,8 @@ function Bazar({ showAll, onShowMore }: BazarProps) {
                 </div>
             )}
 
-            {/* Pagination - Only show when viewing all products */}
-            {showAll && totalPages > 1 && (
+            {/* Pagination - Only show when viewing all products and have results */}
+            {showAll && totalPages > 1 && displayProducts.length > 0 && (
                 <div className="mt-10 pb-4">
                     <div className="flex justify-center items-center gap-2">
                         {/* Previous Button */}
