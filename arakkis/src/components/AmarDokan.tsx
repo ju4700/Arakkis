@@ -128,6 +128,7 @@ export default function AmarDokan() {
 
       setStep(3);
       setTimeout(() => {
+        setStep(1); // Reset step
         setHasShop(true); // Show dashboard after shop creation
       }, 2000);
     } catch (err: any) {
