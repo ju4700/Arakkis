@@ -1,4 +1,4 @@
-function Hero() {
+function Hero({ onQuickLinkClick }: { onQuickLinkClick?: (linkId: number) => void }) {
     const quickLinks = [
         {
             id: 1,
@@ -70,6 +70,7 @@ function Hero() {
                 {quickLinks.map((link, index) => (
                     <div
                         key={link.id}
+                        onClick={() => onQuickLinkClick?.(link.id)}
                         className="bg-white hover:bg-gray-50 rounded-2xl p-6 transition-all duration-300 cursor-pointer shadow-sm hover:shadow-md transform hover:-translate-y-1 border border-gray-100 group relative overflow-hidden"
                         style={{
                             animationDelay: `${index * 100}ms`

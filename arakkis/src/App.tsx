@@ -5,12 +5,13 @@ import Bazar from './components/Bazar'
 import Footer from './components/Footer'
 import Info from './components/Info'
 import Contact from './components/Contact'
+import AmarDokan from './components/AmarDokan'
 import { AuthProvider } from './context/AuthContext'
 
 function App() {
-  const [currentView, setCurrentView] = useState<'home' | 'market' | 'info' | 'contact'>('home');
+  const [currentView, setCurrentView] = useState<'home' | 'market' | 'info' | 'contact' | 'myshop'>('home');
 
-  const handleNavigate = (view: 'home' | 'market' | 'info' | 'contact') => {
+  const handleNavigate = (view: 'home' | 'market' | 'info' | 'contact' | 'myshop') => {
     setCurrentView(view);
     
     // Scroll to top when changing views
@@ -31,6 +32,14 @@ function App() {
     setCurrentView('market');
   };
 
+  const handleQuickLinkClick = (linkId: number) => {
+    if (linkId === 1) {
+      // আমার দোকান clicked
+      setCurrentView('myshop');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <AuthProvider>
       <div className="min-h-screen bg-[#eff2f3]">
@@ -40,13 +49,15 @@ function App() {
         
         {currentView === 'home' ? (
           <>
-            <Hero />
+            <Hero onQuickLinkClick={handleQuickLinkClick} />
             <Bazar showAll={false} onShowMore={handleShowMore} />
           </>
         ) : currentView === 'market' ? (
           <Bazar showAll={true} onShowMore={handleShowMore} />
         ) : currentView === 'info' ? (
           <Info />
+        ) : currentView === 'myshop' ? (
+          <AmarDokan onShopCreated={() => setCurrentView('home')} />
         ) : (
           <Contact />
         )}
