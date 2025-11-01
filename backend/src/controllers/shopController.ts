@@ -27,7 +27,7 @@ export const createShop = async (req: AuthRequest, res: Response) => {
       return res.status(400).json({ message: 'আপনার ইতিমধ্যে একটি দোকান আছে' });
     }
 
-    // Create shop
+    // Create shop with auto-verification for demo
     const shop = await Shop.create({
       name,
       description,
@@ -35,6 +35,7 @@ export const createShop = async (req: AuthRequest, res: Response) => {
       location,
       district,
       owner: userId,
+      verificationStatus: 'verified', // Auto-verify for demo
     });
 
     res.status(201).json({
@@ -48,7 +49,7 @@ export const createShop = async (req: AuthRequest, res: Response) => {
 };
 
 // @desc    Get farmer's shop
-// @route   GET /api/shops/my-shop
+// @route   GET /api/shops/my/shop
 // @access  Private (Farmers only)
 export const getMyShop = async (req: AuthRequest, res: Response) => {
   try {
@@ -64,7 +65,7 @@ export const getMyShop = async (req: AuthRequest, res: Response) => {
       return res.status(404).json({ message: 'দোকান পাওয়া যায়নি' });
     }
 
-    res.json(shop);
+    res.json({ shop });
   } catch (error: any) {
     console.error('Get my shop error:', error);
     res.status(500).json({ message: 'দোকান লোড করতে সমস্যা হয়েছে', error: error.message });

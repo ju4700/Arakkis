@@ -13,13 +13,9 @@ interface Shop {
   type: string;
   location: string;
   district: string;
-  verification: {
-    status: string;
-  };
-  rating: {
-    average: number;
-    count: number;
-  };
+  verificationStatus: string;
+  rating: number;
+  totalReviews: number;
 }
 
 interface Product {
@@ -239,11 +235,11 @@ export default function ShopDashboard() {
           </div>
           <div className="text-right">
             <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full ${
-              shop?.verification.status === 'verified' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'
+              shop?.verificationStatus === 'verified' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'
             }`}>
-              <span>{shop?.verification.status === 'verified' ? '✓' : '⏳'}</span>
+              <span>{shop?.verificationStatus === 'verified' ? '✓' : '⏳'}</span>
               <span className="font-medium font-hind-siliguri">
-                {shop?.verification.status === 'verified' ? 'যাচাইকৃত' : 'যাচাইকরণ চলছে'}
+                {shop?.verificationStatus === 'verified' ? 'যাচাইকৃত' : 'যাচাইকরণ চলছে'}
               </span>
             </div>
           </div>
