@@ -4,6 +4,8 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import connectDB from './config/db';
 import authRoutes from './routes/authRoutes';
+import shopRoutes from './routes/shopRoutes';
+import productRoutes from './routes/productRoutes';
 
 // Load env vars
 dotenv.config();
@@ -28,6 +30,8 @@ app.use(cors({
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/shops', shopRoutes);
+app.use('/api/products', productRoutes);
 
 // Welcome route
 app.get('/', (req: Request, res: Response) => {
