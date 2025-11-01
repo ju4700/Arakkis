@@ -3,7 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import AuthModal from './AuthModal';
 
 interface NavbarProps {
-    onNavigate: (view: 'home' | 'market' | 'info' | 'contact') => void;
+    onNavigate: (view: 'home' | 'market' | 'info' | 'contact' | 'myshop') => void;
 }
 
 function Navbar({ onNavigate }: NavbarProps) {
@@ -19,13 +19,11 @@ function Navbar({ onNavigate }: NavbarProps) {
     return (
         <>
             <nav className="w-full max-w-[1200px] mx-auto h-16 px-5 bg-white rounded-[40px] shadow-sm flex justify-between items-center mt-2">
-                {/* Logo Section */}
                 <div className="flex items-center gap-2 cursor-pointer" onClick={() => onNavigate('home')}>
                     <img className="w-7 h-7 rounded-full object-cover" src="agriculture.png" alt="AgroBazar Logo" />
                     <div className="text-green-600 text-xl font-bold font-inter">AgroBazar</div>
                 </div>
 
-                {/* Navigation Links */}
                 <div className="flex items-center gap-6">
                     <button onClick={() => onNavigate('home')} className="text-black text-lg font-medium font-hind-siliguri hover:text-green-600 transition-colors cursor-pointer">
                         হোম
@@ -41,16 +39,13 @@ function Navbar({ onNavigate }: NavbarProps) {
                     </button>
                 </div>
 
-                {/* Action Buttons */}
                 <div className="flex items-center gap-3">
-                    {/* Search/Notification Icon */}
                     <button className="w-8 h-8 flex items-center justify-center hover:bg-gray-100 rounded-full transition-colors" aria-label="Search">
                         <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                     </button>
 
-                    {/* Login Button or User Menu */}
                     {user ? (
                         <div className="relative">
                             <button
@@ -75,7 +70,6 @@ function Navbar({ onNavigate }: NavbarProps) {
                                 </svg>
                             </button>
 
-                            {/* User Dropdown Menu */}
                             {showUserMenu && (
                                 <div className="absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-lg border border-gray-100 py-2 z-50">
                                     <div className="px-4 py-3 border-b border-gray-100">
@@ -88,7 +82,6 @@ function Navbar({ onNavigate }: NavbarProps) {
                                     <button
                                         onClick={() => {
                                             setShowUserMenu(false);
-                                            // Navigate to profile if needed
                                         }}
                                         className="w-full px-4 py-2 text-left text-gray-700 hover:bg-green-50 transition-colors font-hind-siliguri flex items-center gap-2"
                                     >
@@ -99,7 +92,7 @@ function Navbar({ onNavigate }: NavbarProps) {
                                         <button
                                             onClick={() => {
                                                 setShowUserMenu(false);
-                                                // Navigate to dashboard
+                                                onNavigate('myshop');
                                             }}
                                             className="w-full px-4 py-2 text-left text-gray-700 hover:bg-green-50 transition-colors font-hind-siliguri flex items-center gap-2"
                                         >
@@ -110,7 +103,6 @@ function Navbar({ onNavigate }: NavbarProps) {
                                     <button
                                         onClick={() => {
                                             setShowUserMenu(false);
-                                            // Navigate to orders
                                         }}
                                         className="w-full px-4 py-2 text-left text-gray-700 hover:bg-green-50 transition-colors font-hind-siliguri flex items-center gap-2"
                                     >
@@ -139,8 +131,6 @@ function Navbar({ onNavigate }: NavbarProps) {
                     )}
                 </div>
             </nav>
-
-            {/* Auth Modal */}
             <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
         </>
     )
