@@ -13,12 +13,9 @@ function App() {
 
   const handleNavigate = (view: 'home' | 'market' | 'info' | 'contact' | 'myshop') => {
     setCurrentView(view);
-    
-    // Scroll to top when changing views
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
     if (view === 'market') {
-      // Scroll to bazar section
       setTimeout(() => {
         const bazarElement = document.getElementById('bazar-section');
         if (bazarElement) {
@@ -34,7 +31,6 @@ function App() {
 
   const handleQuickLinkClick = (linkId: number) => {
     if (linkId === 1) {
-      // আমার দোকান clicked
       setCurrentView('myshop');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }

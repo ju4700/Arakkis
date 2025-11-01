@@ -132,12 +132,10 @@ function Info() {
                 </div>
             </div>
 
-            {/* How It Works - Detailed */}
             <div className="mb-20">
                 <h2 className="text-3xl font-bold text-gray-900 font-hind-siliguri mb-8 text-center">কিভাবে কাজ করে?</h2>
                 
                 <div className="space-y-8">
-                    {/* For Farmers */}
                     <div>
                         <h3 className="text-2xl font-bold text-green-600 font-hind-siliguri mb-4 flex items-center gap-3">
                             <span className="w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center text-lg">১</span>
@@ -175,7 +173,6 @@ function Info() {
                         </div>
                     </div>
 
-                    {/* For Buyers */}
                     <div>
                         <h3 className="text-2xl font-bold text-green-600 font-hind-siliguri mb-4 flex items-center gap-3">
                             <span className="w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center text-lg">২</span>
@@ -215,7 +212,6 @@ function Info() {
                 </div>
             </div>
 
-            {/* Partners Section with Sliding Animation */}
             <div className="mb-20">
                 <h2 className="text-3xl font-bold text-center text-gray-900 font-hind-siliguri mb-3">আমাদের পার্টনার</h2>
                 <p className="text-center text-gray-600 font-hind-siliguri mb-10">বিশ্বস্ত সংস্থাগুলির সাথে আমাদের অংশীদারিত্ব</p>
@@ -235,7 +231,6 @@ function Info() {
                 </div>
             </div>
 
-            {/* Cold Storage Partners */}
             <div className="mb-20">
                 <h2 className="text-3xl font-bold text-center text-gray-900 font-hind-siliguri mb-3">হিমাগার পার্টনার</h2>
                 <p className="text-center text-gray-600 font-hind-siliguri mb-10">আধুনিক কোল্ড স্টোরেজ সুবিধা প্রদানকারী</p>
@@ -257,8 +252,6 @@ function Info() {
                     ))}
                 </div>
             </div>
-
-            {/* Statistics */}
             <div className="bg-green-600 rounded-xl p-10 text-white mb-20">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                     {[
@@ -275,7 +268,6 @@ function Info() {
                 </div>
             </div>
 
-            {/* CTA Section */}
             <div className="text-center py-16">
                 <h2 className="text-4xl font-bold text-gray-900 font-hind-siliguri mb-4">আজই যুক্ত হন</h2>
                 <p className="text-gray-600 font-hind-siliguri mb-8 max-w-2xl mx-auto">
@@ -287,7 +279,6 @@ function Info() {
                 </button>
             </div>
 
-            {/* CSS for animation */}
             <style>{`
                 @keyframes scroll {
                     0% {

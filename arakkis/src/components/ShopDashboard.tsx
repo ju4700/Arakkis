@@ -61,7 +61,6 @@ export default function ShopDashboard() {
     try {
       setLoading(true);
       
-      // Fetch shop details
       const shopResponse = await fetch(`${API_URL}/shops/my/shop`, {
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -71,7 +70,6 @@ export default function ShopDashboard() {
         setShop(shopData.shop);
       }
 
-      // Fetch products
       const productsResponse = await fetch(`${API_URL}/products/my/products`, {
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -145,7 +143,6 @@ export default function ShopDashboard() {
         throw new Error(data.message || 'পণ্য যোগ করতে সমস্যা হয়েছে');
       }
 
-      // Reset form and refresh products
       setProductForm({
         name: '',
         description: '',
@@ -230,7 +227,6 @@ export default function ShopDashboard() {
 
   return (
     <div className="w-full max-w-[1200px] mx-auto py-8 px-5">
-      {/* Shop Info Header */}
       <div className="bg-white rounded-2xl shadow-sm p-6 mb-6">
         <div className="flex items-start justify-between mb-4">
           <div>
@@ -275,7 +271,6 @@ export default function ShopDashboard() {
         </div>
       )}
 
-      {/* Add Product Button */}
       <div className="mb-6">
         <button
           onClick={() => {
@@ -298,7 +293,6 @@ export default function ShopDashboard() {
         </button>
       </div>
 
-      {/* Add/Edit Product Form */}
       {showAddProduct && (
         <div className="bg-white rounded-2xl shadow-sm p-6 mb-6">
           <h2 className="text-2xl font-bold mb-6 text-green-700 font-hind-siliguri">
@@ -447,7 +441,6 @@ export default function ShopDashboard() {
         </div>
       )}
 
-      {/* Products List */}
       <div className="bg-white rounded-2xl shadow-sm p-6">
         <h2 className="text-2xl font-bold mb-6 text-gray-800 font-hind-siliguri">আমার পণ্য</h2>
         
