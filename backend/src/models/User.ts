@@ -20,7 +20,7 @@ const userSchema = new Schema<IUser>({
         type: String,
         required: [true, 'ফোন নম্বর আবশ্যক'],
         unique: true,
-        match: [/^(\+880|880)?1[3-9]\d{8}$/, 'একটি বৈধ বাংলাদেশী ফোন নম্বর দিন']
+        match: [/^(\+?880|0)?1[3-9]\d{8}$/, 'একটি বৈধ বাংলাদেশী ফোন নম্বর দিন (01XXXXXXXXX বা +8801XXXXXXXXX)']
     },
     password: {
         type: String,
