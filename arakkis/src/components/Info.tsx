@@ -21,117 +21,197 @@ function Info() {
             {/* Hero Section */}
             <div className="text-center mb-20">
                 <h1 className="text-5xl md:text-6xl font-bold text-gray-900 font-hind-siliguri mb-6">
-                    AgroBazar সম্পর্কে
+                    AgroBazar - কৃষি বিপ্লবের নতুন অধ্যায়
                 </h1>
                 <div className="w-24 h-1 bg-green-600 mx-auto mb-8"></div>
                 <p className="text-xl text-gray-600 font-hind-siliguri max-w-3xl mx-auto leading-relaxed">
-                    বাংলাদেশের প্রথম ডিজিটাল কৃষি বাজার প্ল্যাটফর্ম যা কৃষক এবং ক্রেতাদের সরাসরি সংযুক্ত করে। 
-                    আমরা কৃষি পণ্যের ন্যায্য মূল্য নিশ্চিত করি এবং মধ্যস্থতাকারী ছাড়াই ব্যবসা সহজ করি।
+                    বাংলাদেশের কৃষি খাতে ডিজিটাল রূপান্তরের পথিকৃৎ
                 </p>
             </div>
 
-            {/* Mission & Vision - Simple Layout */}
-            <div className="grid md:grid-cols-2 gap-12 mb-20">
-                <div>
-                    <div className="flex items-center gap-3 mb-4">
-                        <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center">
-                            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                            </svg>
-                        </div>
-                        <h2 className="text-2xl font-bold text-gray-900 font-hind-siliguri">আমাদের লক্ষ্য</h2>
-                    </div>
-                    <p className="text-gray-700 font-hind-siliguri leading-relaxed pl-15">
-                        কৃষকদের তাদের পণ্যের সঠিক মূল্য প্রদান এবং ক্রেতাদের জন্য তাজা, মানসম্মত কৃষি পণ্য সহজলভ্য করা। 
-                        ডিজিটাল প্রযুক্তির মাধ্যমে কৃষি খাতে বিপ্লব আনা।
+            {/* Introduction - Educational Content */}
+            <div className="mb-20 bg-green-50 p-8 rounded-lg border-l-4 border-green-600">
+                <h2 className="text-3xl font-bold text-gray-900 font-hind-siliguri mb-6">আমরা কারা?</h2>
+                <div className="space-y-4 text-gray-700 font-hind-siliguri leading-relaxed text-lg">
+                    <p>
+                        AgroBazar হলো বাংলাদেশের প্রথম সম্পূর্ণ ডিজিটাল কৃষি বাজার প্ল্যাটফর্ম যা কৃষক এবং ক্রেতাদের সরাসরি সংযুক্ত করে। 
+                        ঐতিহ্যগত কৃষি বাজার ব্যবস্থায় কৃষকরা তাদের উৎপাদিত পণ্যের ন্যায্য মূল্য পান না এবং ক্রেতারাও অতিরিক্ত দামে পণ্য কিনতে বাধ্য হন। 
+                        মধ্যস্থতাকারীদের বহুস্তরীয় চেইনের কারণে কৃষকের আয় কম থাকে এবং ক্রেতাদের খরচ বেশি হয়।
                     </p>
-                </div>
-
-                <div>
-                    <div className="flex items-center gap-3 mb-4">
-                        <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center">
-                            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                            </svg>
-                        </div>
-                        <h2 className="text-2xl font-bold text-gray-900 font-hind-siliguri">আমাদের দৃষ্টিভঙ্গি</h2>
-                    </div>
-                    <p className="text-gray-700 font-hind-siliguri leading-relaxed pl-15">
-                        বাংলাদেশের প্রতিটি কৃষক ও ক্রেতাকে ডিজিটাল প্ল্যাটফর্মের মাধ্যমে সংযুক্ত করে একটি স্বচ্ছ, 
-                        দক্ষ এবং লাভজনক কৃষি বাজার গড়ে তোলা।
+                    <p>
+                        আমাদের প্ল্যাটফর্ম এই সমস্যার সমাধান করে। কৃষকরা সরাসরি তাদের পণ্য তালিকাভুক্ত করতে পারেন এবং ক্রেতারা সরাসরি কৃষকের কাছ থেকে 
+                        তাজা পণ্য কিনতে পারেন। এতে কৃষক তার শ্রমের ন্যায্য মূল্য পান এবং ক্রেতারা সাশ্রয়ী দামে মানসম্মত পণ্য পান। 
+                        প্রযুক্তির সাহায্যে আমরা স্বচ্ছতা, বিশ্বাস এবং দক্ষতা নিশ্চিত করি।
                     </p>
                 </div>
             </div>
 
-            {/* Key Features */}
+            {/* The Problem Section */}
             <div className="mb-20">
-                <h2 className="text-3xl font-bold text-center text-gray-900 font-hind-siliguri mb-12">মূল বৈশিষ্ট্য</h2>
-                <div className="grid md:grid-cols-3 gap-8">
-                    {[
-                        {
-                            icon: (
-                                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                            ),
-                            title: 'ন্যায্য মূল্য',
-                            description: 'মধ্যস্থতাকারী ছাড়াই সরাসরি লেনদেন'
-                        },
-                        {
-                            icon: (
-                                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                                </svg>
-                            ),
-                            title: 'গুণমান নিশ্চিতকরণ',
-                            description: 'প্রতিটি পণ্যের মান যাচাই ও সতেজতা'
-                        },
-                        {
-                            icon: (
-                                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                                </svg>
-                            ),
-                            title: 'দ্রুত ডেলিভারি',
-                            description: 'দেশব্যাপী নিরাপদ সরবরাহ'
-                        },
-                        {
-                            icon: (
-                                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                                </svg>
-                            ),
-                            title: 'নিরাপদ পেমেন্ট',
-                            description: 'একাধিক পেমেন্ট অপশন'
-                        },
-                        {
-                            icon: (
-                                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-                                </svg>
-                            ),
-                            title: 'হিমাগার সুবিধা',
-                            description: 'আধুনিক কোল্ড স্টোরেজ'
-                        },
-                        {
-                            icon: (
-                                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                                </svg>
-                            ),
-                            title: 'মার্কেট ইনসাইট',
-                            description: 'রিয়েল-টাইম মূল্য তথ্য'
-                        }
-                    ].map((feature, index) => (
-                        <div key={index} className="text-center group">
-                            <div className="w-16 h-16 bg-green-600 text-white rounded-lg flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform">
-                                {feature.icon}
-                            </div>
-                            <h3 className="text-xl font-bold text-gray-900 font-hind-siliguri mb-2">{feature.title}</h3>
-                            <p className="text-gray-600 font-hind-siliguri">{feature.description}</p>
+                <h2 className="text-3xl font-bold text-gray-900 font-hind-siliguri mb-6 text-center">বর্তমান কৃষি বাজারের সমস্যা</h2>
+                <div className="grid md:grid-cols-2 gap-8">
+                    <div className="bg-white p-6 border-l-4 border-red-500">
+                        <h3 className="text-xl font-bold text-gray-900 font-hind-siliguri mb-3 flex items-center gap-2">
+                            <span className="text-red-500">⚠️</span> কৃষকদের সমস্যা
+                        </h3>
+                        <ul className="space-y-3 text-gray-700 font-hind-siliguri">
+                            <li className="flex items-start gap-2">
+                                <span className="text-green-600 font-bold">•</span>
+                                <span>মধ্যস্থতাকারীদের কারণে উৎপাদন খরচের চেয়ে কম দামে পণ্য বিক্রয়</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span className="text-green-600 font-bold">•</span>
+                                <span>সঠিক বাজার তথ্য ও মূল্য নির্ধারণের জ্ঞানের অভাব</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span className="text-green-600 font-bold">•</span>
+                                <span>পণ্য সংরক্ষণের সুবিধা না থাকায় দ্রুত বিক্রয়ের চাপ</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span className="text-green-600 font-bold">•</span>
+                                <span>সরাসরি ক্রেতাদের সাথে যোগাযোগের মাধ্যম না থাকা</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span className="text-green-600 font-bold">•</span>
+                                <span>মৌসুমি পণ্যের ক্ষেত্রে অতিরিক্ত উৎপাদনে দাম পতন</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="bg-white p-6 border-l-4 border-orange-500">
+                        <h3 className="text-xl font-bold text-gray-900 font-hind-siliguri mb-3 flex items-center gap-2">
+                            <span className="text-orange-500">⚠️</span> ক্রেতাদের সমস্যা
+                        </h3>
+                        <ul className="space-y-3 text-gray-700 font-hind-siliguri">
+                            <li className="flex items-start gap-2">
+                                <span className="text-green-600 font-bold">•</span>
+                                <span>একাধিক মধ্যস্থতাকারীর কারণে পণ্যের অতিরিক্ত মূল্য</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span className="text-green-600 font-bold">•</span>
+                                <span>পণ্যের মান ও সতেজতা সম্পর্কে অনিশ্চয়তা</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span className="text-green-600 font-bold">•</span>
+                                <span>কৃষকদের সাথে সরাসরি লেনদেনের সুযোগ না থাকা</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span className="text-green-600 font-bold">•</span>
+                                <span>পণ্যের উৎস ও উৎপাদন প্রক্রিয়া সম্পর্কে তথ্যের অভাব</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span className="text-green-600 font-bold">•</span>
+                                <span>তাজা ও জৈব পণ্য খুঁজে পেতে অসুবিধা</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            {/* Our Solution */}
+            <div className="mb-20 bg-gradient-to-br from-green-50 to-white p-8 rounded-lg">
+                <h2 className="text-3xl font-bold text-gray-900 font-hind-siliguri mb-6 text-center">আমাদের সমাধান</h2>
+                <div className="space-y-6 text-gray-700 font-hind-siliguri leading-relaxed text-lg">
+                    <p>
+                        AgroBazar একটি স্বচ্ছ, নিরাপদ এবং দক্ষ ডিজিটাল প্ল্যাটফর্ম যা কৃষি পণ্যের সাপ্লাই চেইনকে সরলীকরণ করে। 
+                        আমাদের প্ল্যাটফর্মে কৃষকরা নিজেরাই তাদের পণ্যের দাম নির্ধারণ করতে পারেন এবং ক্রেতারা সরাসরি অর্ডার দিতে পারেন।
+                    </p>
+                    <div className="grid md:grid-cols-3 gap-6">
+                        <div className="text-center p-4">
+                            <div className="text-4xl font-bold text-green-600 mb-2">০%</div>
+                            <p className="font-semibold">মধ্যস্থতাকারী কমিশন</p>
                         </div>
-                    ))}
+                        <div className="text-center p-4">
+                            <div className="text-4xl font-bold text-green-600 mb-2">১০০%</div>
+                            <p className="font-semibold">স্বচ্ছ লেনদেন</p>
+                        </div>
+                        <div className="text-center p-4">
+                            <div className="text-4xl font-bold text-green-600 mb-2">২৪/৭</div>
+                            <p className="font-semibold">সেবা প্রদান</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* How It Works - Detailed */}
+            <div className="mb-20">
+                <h2 className="text-3xl font-bold text-gray-900 font-hind-siliguri mb-8 text-center">কিভাবে কাজ করে?</h2>
+                
+                <div className="space-y-8">
+                    {/* For Farmers */}
+                    <div>
+                        <h3 className="text-2xl font-bold text-green-600 font-hind-siliguri mb-4 flex items-center gap-3">
+                            <span className="w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center text-lg">১</span>
+                            কৃষকদের জন্য
+                        </h3>
+                        <div className="grid md:grid-cols-2 gap-6 pl-13">
+                            <div className="bg-white p-5 rounded-lg border border-green-200">
+                                <h4 className="font-bold text-lg text-gray-900 font-hind-siliguri mb-2">রেজিস্ট্রেশন</h4>
+                                <p className="text-gray-700 font-hind-siliguri">
+                                    কৃষক হিসেবে অ্যাকাউন্ট তৈরি করুন। আপনার জমির তথ্য, উৎপাদিত পণ্যের ধরন এবং যোগাযোগের তথ্য প্রদান করুন।
+                                    একবার যাচাই হয়ে গেলে আপনি পণ্য বিক্রয় শুরু করতে পারবেন।
+                                </p>
+                            </div>
+                            <div className="bg-white p-5 rounded-lg border border-green-200">
+                                <h4 className="font-bold text-lg text-gray-900 font-hind-siliguri mb-2">পণ্য তালিকাভুক্ত করুন</h4>
+                                <p className="text-gray-700 font-hind-siliguri">
+                                    আপনার উৎপাদিত পণ্যের ছবি, বিবরণ, পরিমাণ এবং দাম যোগ করুন। পণ্যের মান, জৈব কিনা, 
+                                    সংগ্রহের সময় ইত্যাদি তথ্য দিন যাতে ক্রেতারা সঠিক সিদ্ধান্ত নিতে পারে।
+                                </p>
+                            </div>
+                            <div className="bg-white p-5 rounded-lg border border-green-200">
+                                <h4 className="font-bold text-lg text-gray-900 font-hind-siliguri mb-2">অর্ডার গ্রহণ</h4>
+                                <p className="text-gray-700 font-hind-siliguri">
+                                    ক্রেতারা যখন আপনার পণ্য অর্ডার করবে, আপনি তাৎক্ষণিক নোটিফিকেশন পাবেন। 
+                                    অর্ডার কনফার্ম করুন এবং পণ্য সরবরাহের জন্য প্রস্তুত করুন।
+                                </p>
+                            </div>
+                            <div className="bg-white p-5 rounded-lg border border-green-200">
+                                <h4 className="font-bold text-lg text-gray-900 font-hind-siliguri mb-2">পেমেন্ট গ্রহণ</h4>
+                                <p className="text-gray-700 font-hind-siliguri">
+                                    পণ্য সরবরাহের পর সরাসরি আপনার অ্যাকাউন্টে পেমেন্ট পাবেন। bKash, Nagad, ব্যাংক ট্রান্সফার - 
+                                    যেকোনো মাধ্যমে নিরাপদভাবে অর্থ গ্রহণ করুন।
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* For Buyers */}
+                    <div>
+                        <h3 className="text-2xl font-bold text-green-600 font-hind-siliguri mb-4 flex items-center gap-3">
+                            <span className="w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center text-lg">২</span>
+                            ক্রেতাদের জন্য
+                        </h3>
+                        <div className="grid md:grid-cols-2 gap-6 pl-13">
+                            <div className="bg-white p-5 rounded-lg border border-green-200">
+                                <h4 className="font-bold text-lg text-gray-900 font-hind-siliguri mb-2">রেজিস্ট্রেশন</h4>
+                                <p className="text-gray-700 font-hind-siliguri">
+                                    ক্রেতা হিসেবে অ্যাকাউন্ট তৈরি করুন। আপনার ডেলিভারি ঠিকানা এবং পছন্দের পেমেন্ট পদ্ধতি সংরক্ষণ করুন।
+                                    সহজেই পণ্য ব্রাউজ করা এবং অর্ডার করা শুরু করুন।
+                                </p>
+                            </div>
+                            <div className="bg-white p-5 rounded-lg border border-green-200">
+                                <h4 className="font-bold text-lg text-gray-900 font-hind-siliguri mb-2">পণ্য খুঁজুন</h4>
+                                <p className="text-gray-700 font-hind-siliguri">
+                                    আমাদের সার্চ এবং ফিল্টার সিস্টেম ব্যবহার করে আপনার পছন্দের পণ্য খুঁজুন। জেলা, পণ্যের ধরন, 
+                                    দাম রেঞ্জ, জৈব পণ্য ইত্যাদি অনুযায়ী ফিল্টার করুন।
+                                </p>
+                            </div>
+                            <div className="bg-white p-5 rounded-lg border border-green-200">
+                                <h4 className="font-bold text-lg text-gray-900 font-hind-siliguri mb-2">অর্ডার করুন</h4>
+                                <p className="text-gray-700 font-hind-siliguri">
+                                    পছন্দের পণ্য কার্টে যোগ করুন এবং অর্ডার সম্পন্ন করুন। কৃষকের সাথে সরাসরি যোগাযোগ করতে পারবেন 
+                                    এবং পণ্য সম্পর্কে বিস্তারিত জানতে পারবেন।
+                                </p>
+                            </div>
+                            <div className="bg-white p-5 rounded-lg border border-green-200">
+                                <h4 className="font-bold text-lg text-gray-900 font-hind-siliguri mb-2">ডেলিভারি পান</h4>
+                                <p className="text-gray-700 font-hind-siliguri">
+                                    আমাদের লজিস্টিক পার্টনাররা আপনার দোরগোড়ায় তাজা পণ্য পৌঁছে দেবে। 
+                                    রিয়েল-টাইম ট্র্যাকিং সিস্টেমে আপনার অর্ডারের অবস্থান জানুন।
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
