@@ -20,7 +20,7 @@ app.use(cookieParser());
 
 // Enable CORS
 const allowedOrigins = process.env.NODE_ENV === 'production' 
-    ? ['https://your-frontend-domain.com', 'https://arakkis.vercel.app'] 
+    ? ['https://arakkiss.onrender.com', 'https://arakkis.vercel.app', 'https://your-frontend-domain.com'] 
     : ['http://localhost:5173', 'http://localhost:3000'];
 
 app.use(cors({
