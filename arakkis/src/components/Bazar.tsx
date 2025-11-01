@@ -1,5 +1,15 @@
-function Bazar() {
-    const products = [
+import { useState } from 'react';
+
+interface BazarProps {
+    showAll: boolean;
+    onShowMore: () => void;
+}
+
+function Bazar({ showAll, onShowMore }: BazarProps) {
+    const [currentPage, setCurrentPage] = useState(1);
+    const productsPerPage = showAll ? 12 : 9; // 12 for market view (3x4), 9 for home view (3x3)
+
+    const allProducts = [
         {
             id: 1,
             name: "তাজা টমেটো",
@@ -71,7 +81,7 @@ function Bazar() {
             category: "সবজি",
             price: 35,
             unit: "কেজি",
-            image: "https://placehold.co/300x300/D2B48C/FFFFFF?text=আলু",
+            image: "images/alu.jpeg",
             seller: "মিজান ভেজিটেবল",
             rating: 4.2,
             reviews: 41,
@@ -97,7 +107,7 @@ function Bazar() {
             category: "সবজি",
             price: 55,
             unit: "কেজি",
-            image: "https://placehold.co/300x300/E6E6FA/FFFFFF?text=পেঁয়াজ",
+            image: "images/peyaj.jpeg",
             seller: "রফিক এন্টারপ্রাইজ",
             rating: 4.4,
             reviews: 29,
@@ -110,14 +120,233 @@ function Bazar() {
             category: "মাছ",
             price: 1200,
             unit: "কেজি",
-            image: "https://placehold.co/300x300/87CEEB/FFFFFF?text=ইলিশ",
+            image: "images/elish.jpeg",
             seller: "বাবলু ফিশ মার্কেট",
             rating: 5.0,
             reviews: 89,
             stock: "সীমিত স্টক",
             location: "চাঁদপুর"
+        },
+        // Additional products for expanded view
+        {
+            id: 10,
+            name: "কাঁচা মরিচ",
+            category: "সবজি",
+            price: 60,
+            unit: "কেজি",
+            image: "https://placehold.co/300x300/90EE90/FFFFFF?text=কাঁচা+মরিচ",
+            seller: "হক ভেজিটেবল",
+            rating: 4.1,
+            reviews: 25,
+            stock: "স্টকে আছে",
+            location: "যশোর"
+        },
+        {
+            id: 11,
+            name: "গরুর মাংস",
+            category: "মাংস",
+            price: 650,
+            unit: "কেজি",
+            image: "https://placehold.co/300x300/FFB6C1/FFFFFF?text=গরুর+মাংস",
+            seller: "কবির মিট শপ",
+            rating: 4.7,
+            reviews: 52,
+            stock: "স্টকে আছে",
+            location: "কুমিল্লা"
+        },
+        {
+            id: 12,
+            name: "পাঙ্গাশ মাছ",
+            category: "মাছ",
+            price: 220,
+            unit: "কেজি",
+            image: "https://placehold.co/300x300/87CEEB/FFFFFF?text=পাঙ্গাশ",
+            seller: "সুমন ফিশারি",
+            rating: 4.0,
+            reviews: 36,
+            stock: "স্টকে আছে",
+            location: "ময়মনসিংহ"
+        },
+        {
+            id: 13,
+            name: "মিনিকেট চাল",
+            category: "চাল ও ডাল",
+            price: 65,
+            unit: "কেজি",
+            image: "https://placehold.co/300x300/F5DEB3/FFFFFF?text=মিনিকেট",
+            seller: "আলী ট্রেডার্স",
+            rating: 4.5,
+            reviews: 74,
+            stock: "স্টকে আছে",
+            location: "নারায়ণগঞ্জ"
+        },
+        {
+            id: 14,
+            name: "শসা",
+            category: "সবজি",
+            price: 40,
+            unit: "কেজি",
+            image: "https://placehold.co/300x300/90EE90/FFFFFF?text=শসা",
+            seller: "রহমান ভেজিটেবল",
+            rating: 4.3,
+            reviews: 31,
+            stock: "স্টকে আছে",
+            location: "নাটোর"
+        },
+        {
+            id: 15,
+            name: "মুগ ডাল",
+            category: "চাল ও ডাল",
+            price: 120,
+            unit: "কেজি",
+            image: "https://placehold.co/300x300/F5DEB3/FFFFFF?text=মুগ+ডাল",
+            seller: "হোসেন ট্রেডার্স",
+            rating: 4.8,
+            reviews: 63,
+            stock: "স্টকে আছে",
+            location: "ফরিদপুর"
+        },
+        {
+            id: 16,
+            name: "গাজর",
+            category: "সবজি",
+            price: 50,
+            unit: "কেজি",
+            image: "https://placehold.co/300x300/FFA500/FFFFFF?text=গাজর",
+            seller: "নূর ভেজিটেবল",
+            rating: 4.4,
+            reviews: 27,
+            stock: "স্টকে আছে",
+            location: "রংপুর"
+        },
+        {
+            id: 17,
+            name: "ব্রয়লার মুরগি",
+            category: "মাংস",
+            price: 180,
+            unit: "কেজি",
+            image: "https://placehold.co/300x300/FFB6C1/FFFFFF?text=ব্রয়লার",
+            seller: "শাহ পোল্ট্রি",
+            rating: 4.2,
+            reviews: 44,
+            stock: "স্টকে আছে",
+            location: "গাজীপুর"
+        },
+        {
+            id: 18,
+            name: "চিংড়ি মাছ",
+            category: "মাছ",
+            price: 850,
+            unit: "কেজি",
+            image: "https://placehold.co/300x300/87CEEB/FFFFFF?text=চিংড়ি",
+            seller: "রাজ ফিশারি",
+            rating: 4.9,
+            reviews: 71,
+            stock: "সীমিত স্টক",
+            location: "খুলনা"
+        },
+        {
+            id: 19,
+            name: "মসুর ডাল",
+            category: "চাল ও ডাল",
+            price: 110,
+            unit: "কেজি",
+            image: "https://placehold.co/300x300/F5DEB3/FFFFFF?text=মসুর+ডাল",
+            seller: "বশির ট্রেডার্স",
+            rating: 4.6,
+            reviews: 58,
+            stock: "স্টকে আছে",
+            location: "যশোর"
+        },
+        {
+            id: 20,
+            name: "ফুলকপি",
+            category: "সবজি",
+            price: 38,
+            unit: "কেজি",
+            image: "https://placehold.co/300x300/F5F5DC/FFFFFF?text=ফুলকপি",
+            seller: "কামাল ভেজিটেবল",
+            rating: 4.1,
+            reviews: 22,
+            stock: "স্টকে আছে",
+            location: "বরিশাল"
+        },
+        {
+            id: 21,
+            name: "বোয়াল মাছ",
+            category: "মাছ",
+            price: 520,
+            unit: "কেজি",
+            image: "https://placehold.co/300x300/87CEEB/FFFFFF?text=বোয়াল",
+            seller: "মান্নান ফিশ সেন্টার",
+            rating: 4.5,
+            reviews: 39,
+            stock: "স্টকে আছে",
+            location: "সিলেট"
+        },
+        {
+            id: 22,
+            name: "ছোলা",
+            category: "চাল ও ডাল",
+            price: 95,
+            unit: "কেজি",
+            image: "https://placehold.co/300x300/F5DEB3/FFFFFF?text=ছোলা",
+            seller: "ইসলাম ট্রেডার্স",
+            rating: 4.3,
+            reviews: 46,
+            stock: "স্টকে আছে",
+            location: "কুষ্টিয়া"
+        },
+        {
+            id: 23,
+            name: "বাঁধাকপি",
+            category: "সবজি",
+            price: 30,
+            unit: "কেজি",
+            image: "https://placehold.co/300x300/90EE90/FFFFFF?text=বাঁধাকপি",
+            seller: "তাজ ভেজিটেবল",
+            rating: 4.0,
+            reviews: 19,
+            stock: "স্টকে আছে",
+            location: "ঢাকা"
+        },
+        {
+            id: 24,
+            name: "ভেড়ার মাংস",
+            category: "মাংস",
+            price: 900,
+            unit: "কেজি",
+            image: "https://placehold.co/300x300/FFB6C1/FFFFFF?text=ভেড়া",
+            seller: "হাফিজ মিট শপ",
+            rating: 4.8,
+            reviews: 34,
+            stock: "সীমিত স্টক",
+            location: "চট্টগ্রাম"
         }
     ];
+
+    // Pagination logic
+    const totalProducts = showAll ? allProducts.length : 9;
+    const totalPages = Math.ceil(totalProducts / productsPerPage);
+    
+    // Calculate products to display
+    let displayProducts;
+    if (showAll) {
+        const indexOfLastProduct = currentPage * productsPerPage;
+        const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+        displayProducts = allProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+    } else {
+        displayProducts = allProducts.slice(0, 9);
+    }
+
+    const handlePageChange = (pageNumber: number) => {
+        setCurrentPage(pageNumber);
+        // Scroll to top of bazar section
+        const bazarElement = document.getElementById('bazar-section');
+        if (bazarElement) {
+            bazarElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    };
 
     const renderStars = (rating: number) => {
         const stars = [];
@@ -147,7 +376,7 @@ function Bazar() {
     };
 
     return (
-        <section className="w-full bg-white rounded-t-[40px] shadow-lg">
+        <section id="bazar-section" className="w-full bg-white rounded-t-[40px] shadow-lg">
             <div className="w-full max-w-[1200px] mx-auto py-12 px-5">
                 {/* Section Header */}
                 <div className="mb-10">
@@ -207,7 +436,7 @@ function Bazar() {
 
             {/* Products Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {products.map((product, index) => (
+                {displayProducts.map((product, index) => (
                     <div
                         key={product.id}
                         className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 group cursor-pointer transform hover:-translate-y-1"
@@ -299,12 +528,74 @@ function Bazar() {
                 ))}
             </div>
 
-            {/* Load More Button */}
-            <div className="mt-10 text-center pb-4">
-                <button className="px-8 py-3 bg-white hover:bg-green-600 text-gray-800 hover:text-white border-2 border-green-600 rounded-[32px] font-hind-siliguri text-lg font-medium transition-all duration-300 shadow-sm hover:shadow-md transform hover:scale-105">
-                    আরো পণ্য দেখুন
-                </button>
-            </div>
+            {/* Load More Button - Only show if not showing all products */}
+            {!showAll && (
+                <div className="mt-10 text-center pb-4">
+                    <button 
+                        onClick={onShowMore}
+                        className="px-8 py-3 bg-white hover:bg-green-600 text-gray-800 hover:text-white border-2 border-green-600 rounded-[32px] font-hind-siliguri text-lg font-medium transition-all duration-300 shadow-sm hover:shadow-md transform hover:scale-105"
+                    >
+                        আরো পণ্য দেখুন
+                    </button>
+                </div>
+            )}
+
+            {/* Pagination - Only show when viewing all products */}
+            {showAll && totalPages > 1 && (
+                <div className="mt-10 pb-4">
+                    <div className="flex justify-center items-center gap-2">
+                        {/* Previous Button */}
+                        <button
+                            onClick={() => handlePageChange(currentPage - 1)}
+                            disabled={currentPage === 1}
+                            className={`px-4 py-2 rounded-xl font-hind-siliguri text-sm font-medium transition-all duration-300 ${
+                                currentPage === 1
+                                    ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                    : 'bg-white text-gray-800 hover:bg-green-600 hover:text-white border border-gray-200'
+                            }`}
+                        >
+                            ← পূর্ববর্তী
+                        </button>
+
+                        {/* Page Numbers */}
+                        <div className="flex gap-2">
+                            {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+                                <button
+                                    key={pageNum}
+                                    onClick={() => handlePageChange(pageNum)}
+                                    className={`w-10 h-10 rounded-xl font-hind-siliguri text-sm font-medium transition-all duration-300 ${
+                                        currentPage === pageNum
+                                            ? 'bg-green-600 text-white shadow-md'
+                                            : 'bg-white text-gray-800 hover:bg-green-100 border border-gray-200'
+                                    }`}
+                                >
+                                    {pageNum}
+                                </button>
+                            ))}
+                        </div>
+
+                        {/* Next Button */}
+                        <button
+                            onClick={() => handlePageChange(currentPage + 1)}
+                            disabled={currentPage === totalPages}
+                            className={`px-4 py-2 rounded-xl font-hind-siliguri text-sm font-medium transition-all duration-300 ${
+                                currentPage === totalPages
+                                    ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                    : 'bg-white text-gray-800 hover:bg-green-600 hover:text-white border border-gray-200'
+                            }`}
+                        >
+                            পরবর্তী →
+                        </button>
+                    </div>
+
+                    {/* Page Info */}
+                    <div className="text-center mt-4">
+                        <p className="text-sm text-gray-600 font-hind-siliguri">
+                            পৃষ্ঠা {currentPage} এর {totalPages} | মোট {totalProducts} টি পণ্য
+                        </p>
+                    </div>
+                </div>
+            )}
         </div>
         </section>
     );

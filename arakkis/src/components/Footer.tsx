@@ -128,26 +128,6 @@ function Footer() {
                     </div>
                 </div>
 
-                {/* Newsletter Subscription */}
-                <div className="border-t border-gray-800 pt-8 mb-8">
-                    <div className="max-w-md mx-auto text-center">
-                        <h4 className="text-lg font-semibold mb-2 font-hind-siliguri">নিউজলেটার সাবস্ক্রাইব করুন</h4>
-                        <p className="text-gray-400 text-sm mb-4 font-hind-siliguri">
-                            বাজার দর ও সর্বশেষ আপডেট পেতে সাবস্ক্রাইব করুন
-                        </p>
-                        <div className="flex gap-2">
-                            <input
-                                type="email"
-                                placeholder="আপনার ইমেইল"
-                                className="flex-1 px-4 py-2 bg-gray-800 border border-gray-700 rounded-[32px] text-white placeholder:text-gray-500 font-hind-siliguri text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
-                            />
-                            <button className="px-6 py-2 bg-green-600 hover:bg-green-700 rounded-[32px] font-hind-siliguri text-sm font-medium transition-colors">
-                                সাবস্ক্রাইব
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
                 {/* Bottom Bar */}
                 <div className="border-t border-gray-800 pt-6">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-4">

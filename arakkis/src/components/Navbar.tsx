@@ -1,20 +1,24 @@
-function Navbar() {
+interface NavbarProps {
+    onNavigate: (view: 'home' | 'market') => void;
+}
+
+function Navbar({ onNavigate }: NavbarProps) {
     return (
-        <nav className="w-full max-w-[1200px] mx-auto h-16 px-5 bg-white rounded-[40px] shadow-sm flex justify-between items-center mt-4">
+        <nav className="w-full max-w-[1200px] mx-auto h-16 px-5 bg-white rounded-[40px] shadow-sm flex justify-between items-center mt-2">
             {/* Logo Section */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 cursor-pointer" onClick={() => onNavigate('home')}>
                 <img className="w-7 h-7 rounded-full object-cover" src="fav.png" alt="AgroBazar Logo" />
                 <div className="text-green-600 text-xl font-bold font-inter">AgroBazar</div>
             </div>
 
             {/* Navigation Links */}
             <div className="flex items-center gap-6">
-                <a href="#home" className="text-black text-lg font-medium font-hind-siliguri hover:text-green-600 transition-colors cursor-pointer">
+                <button onClick={() => onNavigate('home')} className="text-black text-lg font-medium font-hind-siliguri hover:text-green-600 transition-colors cursor-pointer">
                     হোম
-                </a>
-                <a href="#market" className="text-black text-lg font-medium font-hind-siliguri hover:text-green-600 transition-colors cursor-pointer">
+                </button>
+                <button onClick={() => onNavigate('market')} className="text-black text-lg font-medium font-hind-siliguri hover:text-green-600 transition-colors cursor-pointer">
                     বাজার
-                </a>
+                </button>
                 <a href="#info" className="text-black text-lg font-medium font-hind-siliguri hover:text-green-600 transition-colors cursor-pointer">
                     তথ্য
                 </a>
